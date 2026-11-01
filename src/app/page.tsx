@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BookingForm } from "@/components/BookingForm";
 import { FixedImageBand } from "@/components/FixedImageBand";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { TreatmentIcon } from "@/components/TreatmentIcon";
 import { ArrowRight, Calendar, Check, Clock, Mail, MapPin, Phone, Plus, Shield, Star, Tooth } from "@/components/icons";
 import { SectionHeader } from "@/components/SectionHeader";
 import { siteConfig, telLink } from "@/config/site";
@@ -110,11 +111,11 @@ export default function HomePage() {
           <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {treatments.map((t, i) => (
               <li key={t.id} id={t.id} className="group flex flex-col overflow-hidden rounded-3xl border border-line bg-card" data-reveal style={{ "--reveal-delay": `${(i % 3) * 90}ms` } as React.CSSProperties}>
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src={images[t.image].src} alt={images[t.image].alt} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" placeholder="blur" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="flex flex-1 flex-col p-6 md:p-7">
-                  <h3 className="font-title text-[1.85rem]">{t.name}</h3>
+                <div className="flex flex-1 flex-col p-7 md:p-8">
+                  <span className="grid h-20 w-20 place-items-center rounded-2xl bg-sage transition-transform duration-500 group-hover:-translate-y-1">
+                    <TreatmentIcon id={t.id} className="h-14 w-14" />
+                  </span>
+                  <h3 className="mt-6 font-title text-[1.85rem]">{t.name}</h3>
                   <p className="mt-2 text-ink-soft">{t.summary}</p>
                   <ul className="mt-5 space-y-2 text-[0.9375rem] text-ink-soft">
                     {t.points.map((p) => (
