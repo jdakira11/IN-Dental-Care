@@ -3,8 +3,8 @@ import Link from "next/link";
 import { BookingForm } from "@/components/BookingForm";
 import { FixedImageBand } from "@/components/FixedImageBand";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
-import { TreatmentIcon } from "@/components/TreatmentIcon";
-import { ArrowRight, Calendar, Check, Clock, Mail, MapPin, Phone, Plus, Shield, Star, Tooth } from "@/components/icons";
+import { TreatmentCard } from "@/components/TreatmentCard";
+import { Calendar, Check, Clock, Mail, MapPin, Phone, Plus, Shield, Star, Tooth } from "@/components/icons";
 import { SectionHeader } from "@/components/SectionHeader";
 import { siteConfig, telLink } from "@/config/site";
 import { band, booking, coverage, doctor, faq, firstVisit, hero } from "@/content/copy";
@@ -108,27 +108,11 @@ export default function HomePage() {
       <section id="tratamientos" aria-labelledby="titulo-tratamientos" className="bg-paper-2 py-24 md:py-32">
         <div className="container-x">
           <SectionHeader id="titulo-tratamientos" eyebrow="Tratamientos" title="Todo lo que tu sonrisa necesita" intro="Odontología integral para adolescentes y adultos, con un plan claro desde la primera consulta." />
-          <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* items-start: al abrir una tarjeta, las de su fila no se estiran */}
+          <ul className="mx-auto mt-14 grid max-w-6xl items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {treatments.map((t, i) => (
-              <li key={t.id} id={t.id} className="group flex flex-col overflow-hidden rounded-3xl border border-line bg-card" data-reveal style={{ "--reveal-delay": `${(i % 3) * 90}ms` } as React.CSSProperties}>
-                <div className="flex flex-1 flex-col p-7 md:p-8">
-                  <span className="grid h-20 w-20 place-items-center rounded-2xl bg-sage transition-transform duration-500 group-hover:-translate-y-1">
-                    <TreatmentIcon id={t.id} className="h-14 w-14" />
-                  </span>
-                  <h3 className="mt-6 font-title text-[1.85rem]">{t.name}</h3>
-                  <p className="mt-2 text-ink-soft">{t.summary}</p>
-                  <ul className="mt-5 space-y-2 text-[0.9375rem] text-ink-soft">
-                    {t.points.map((p) => (
-                      <li key={p} className="flex items-center gap-2.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="#agenda" className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-accent">
-                    Agendar evaluación <ArrowRight width={16} height={16} className="transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
+              <li key={t.id} id={t.id} data-reveal style={{ "--reveal-delay": `${(i % 3) * 90}ms` } as React.CSSProperties}>
+                <TreatmentCard treatment={t} />
               </li>
             ))}
           </ul>

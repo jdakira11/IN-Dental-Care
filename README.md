@@ -42,3 +42,4 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 | 2026-11-01 | Logo del cliente, fotos propias en portada y sección del doctor, nombre «IN Dental Care» |
 | 2026-11-01 | «Primera consulta» rediseñada como línea de tiempo con columna fija y aparición al hacer scroll (estructura de dentalrx.ca); 5 pasos |
 | 2026-11-01 | Tratamientos: fotos sustituidas por iconos planos propios, uno por servicio |
+| 2026-11-01 | Tratamientos desplegables: icono + nombre; clic para abrir y cerrar el detalle |
