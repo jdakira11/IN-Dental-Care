@@ -2,7 +2,6 @@ import type { StaticImageData } from "next/image";
 import boxDental from "@/assets/images/box-dental-luminoso.webp";
 import drAtWork from "@/assets/images/dr-nunez-atendiendo.webp";
 import drPortrait from "@/assets/images/dr-nunez-retrato.webp";
-import waitingRoom from "@/assets/images/sala-espera.webp";
 import ttoEndodontics from "@/assets/images/tto-endodoncia.webp";
 import ttoAesthetics from "@/assets/images/tto-estetica.webp";
 import ttoImplants from "@/assets/images/tto-implantes.webp";
@@ -47,11 +46,6 @@ export const images = {
     src: boxDental,
     alt: "Box dental blanco con sillón gris, monitor y piso de madera clara",
     credit: unsplash("Kari Bjorn Photography", "karibjorn", "Fdku_oMrDvk"),
-  },
-  waitingRoom: {
-    src: waitingRoom,
-    alt: "Sala de espera blanca con sillas negras y un olivo en maceta",
-    credit: unsplash("Amy Vosters", "amyvosters", "pxOQ-P97sA8"),
   },
   ttoImplants: {
     src: ttoImplants,

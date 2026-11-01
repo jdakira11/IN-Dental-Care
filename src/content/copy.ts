@@ -45,13 +45,14 @@ export const band = {
 
 export const firstVisit = {
   eyebrow: "Primera consulta",
-  title: "Así es tu primera visita",
+  title: { lead: "Así es tu", highlight: "primera visita" },
   intro: "Una hora dedicada solo a ti, para entender qué necesitas y qué opciones tienes.",
   steps: [
     { title: "Conversación", text: "Nos cuentas qué te preocupa, tus expectativas y tu historia dental." },
     { title: "Evaluación completa", text: "Examen clínico, fotografías y radiografía digital si es necesaria." },
     { title: "Plan y presupuesto", text: "Te explicamos las alternativas con sus tiempos y costos, por escrito." },
     { title: "Tú decides", text: "Sin presiones: agendas el tratamiento cuando te sientas seguro." },
+    { title: "Tratamiento y controles", text: "Te acompaño en cada sesión y en controles programados para cuidar el resultado." },
   ],
 };
 

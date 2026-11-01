@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookingForm } from "@/components/BookingForm";
 import { FixedImageBand } from "@/components/FixedImageBand";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { ArrowRight, Calendar, Check, Clock, Mail, MapPin, Phone, Plus, Shield, Star, Tooth } from "@/components/icons";
 import { SectionHeader } from "@/components/SectionHeader";
 import { siteConfig, telLink } from "@/config/site";
@@ -9,8 +10,6 @@ import { band, booking, coverage, doctor, faq, firstVisit, hero } from "@/conten
 import { images } from "@/content/images";
 import { testimonials } from "@/content/testimonials";
 import { treatments } from "@/content/treatments";
-
-const illustrative = siteConfig.showContentNotices && <span className="notice-tag bg-card/90 text-ink-soft">Imagen ilustrativa</span>;
 
 export default function HomePage() {
   const { contact, hours } = siteConfig;
@@ -144,33 +143,21 @@ export default function HomePage() {
         </div>
       </FixedImageBand>
 
-      {/* ── Primera consulta ── */}
+      {/* ── Primera consulta: columna fija + línea de tiempo que se revela al hacer scroll ── */}
       <section id="primera-consulta" aria-labelledby="titulo-primera" className="py-24 md:py-32">
-        <div className="container-x grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
-          <div>
-            <p className="eyebrow" data-reveal>
-              {firstVisit.eyebrow}
-            </p>
-            <h2 id="titulo-primera" className="display-lg mt-5" data-reveal>
-              {firstVisit.title}
+        <div className="container-x grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <p className="eyebrow">{firstVisit.eyebrow}</p>
+            <h2 id="titulo-primera" className="display-lg mt-5">
+              {firstVisit.title.lead}
+              <span className="block text-accent">{firstVisit.title.highlight}</span>
             </h2>
-            <p className="mt-5 max-w-xl text-lg text-ink-soft" data-reveal>
-              {firstVisit.intro}
-            </p>
-            <ol className="mt-10 grid gap-4 sm:grid-cols-2">
-              {firstVisit.steps.map((s, i) => (
-                <li key={s.title} className="rounded-2xl border border-line bg-card p-6" data-reveal style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}>
-                  <span className="font-title text-4xl text-sage-mid">0{i + 1}</span>
-                  <h3 className="mt-2 text-lg font-semibold">{s.title}</h3>
-                  <p className="mt-1.5 text-[0.9375rem] text-ink-soft">{s.text}</p>
-                </li>
-              ))}
-            </ol>
+            <p className="mt-5 max-w-sm text-lg text-ink-soft">{firstVisit.intro}</p>
+            <Link href="#agenda" className="btn btn-primary mt-9">
+              <Calendar /> Agendar evaluación
+            </Link>
           </div>
-          <div className="relative hidden aspect-[4/5] overflow-hidden rounded-[2rem] lg:block" data-reveal>
-            <Image src={images.waitingRoom.src} alt={images.waitingRoom.alt} fill sizes="35vw" placeholder="blur" className="object-cover" />
-            <div className="absolute left-4 top-4">{illustrative}</div>
-          </div>
+          <ProcessTimeline steps={firstVisit.steps} />
         </div>
       </section>
 

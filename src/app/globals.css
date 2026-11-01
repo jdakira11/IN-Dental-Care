@@ -173,6 +173,31 @@
   transform: translate3d(0, 28px, 0);
 }
 
+/* ── Línea de tiempo del proceso (ProcessTimeline) ── */
+.process-fill {
+  transform: scaleY(var(--progress, 1));
+}
+.process-body {
+  transition:
+    opacity 0.9s var(--ease-out-soft),
+    transform 1s var(--ease-out-soft);
+}
+.process-step[data-step-pending] .process-body {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+}
+.process-num {
+  transition:
+    background-color 0.5s var(--ease-out-soft),
+    border-color 0.5s var(--ease-out-soft),
+    color 0.5s var(--ease-out-soft);
+}
+.process-step:not([data-step-pending]) .process-num {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-card);
+}
+
 .no-scrollbar {
   scrollbar-width: none;
 }

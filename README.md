@@ -32,7 +32,7 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 - Imágenes: `src/assets/images/` (registro y créditos en `src/content/images.ts`)
 
 ## Pendiente
-- [ ] Si pasa a cliente real: sustituir datos ficticios (dirección, teléfono, WhatsApp, correo, credenciales, cifras, opiniones) y fotos ilustrativas de Unsplash (tratamientos, box, sala de espera)
+- [ ] Si pasa a cliente real: sustituir datos ficticios (dirección, teléfono, WhatsApp, correo, credenciales, cifras, opiniones) y fotos ilustrativas de Unsplash (tratamientos y box)
 - [ ] Revisión profesional del texto de privacidad y de las normas de publicidad sanitaria
 
 ## Historial de entregas
@@ -40,3 +40,4 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 |---|---|
 | 2026-11-01 | Primera versión publicada en GitHub Pages |
 | 2026-11-01 | Logo del cliente, fotos propias en portada y sección del doctor, nombre «IN Dental Care» |
+| 2026-11-01 | «Primera consulta» rediseñada como línea de tiempo con columna fija y aparición al hacer scroll (estructura de dentalrx.ca); 5 pasos |
