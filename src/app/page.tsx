@@ -67,10 +67,10 @@ export default function HomePage() {
       </section>
 
       {/* ── El doctor ── */}
-      <section id="doctor" aria-labelledby="titulo-doctor" className="py-24 md:py-32">
+      <section id="doctor" aria-labelledby="titulo-doctor" className="overflow-x-clip py-24 md:py-32">
         <div className="container-x grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div className="relative mx-auto w-full max-w-md lg:max-w-none" data-reveal>
-            <div className="absolute -inset-3 -z-10 translate-x-6 translate-y-6 rounded-[2rem] bg-sage" />
+            <div className="absolute -inset-2 -z-10 translate-x-3 translate-y-3 rounded-[2rem] md:-inset-3 md:translate-x-6 md:translate-y-6 bg-sage" />
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
               <Image src={images.doctor.src} alt={images.doctor.alt} fill sizes="(min-width: 1024px) 40vw, 90vw" placeholder="blur" className="object-cover" />
               <div className="absolute left-4 top-4">{illustrative}</div>
