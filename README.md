@@ -1,6 +1,6 @@
 # IIN Dental Care · Prototipo web
 
-**Vista previa para el cliente:** https://jdakira11.github.io/iin-dental-care/ *(pendiente de la primera publicación)*
+**Vista previa para el cliente:** https://jdakira11.github.io/IN-Dental-Care/
 
 > Prototipo visual estático. Los formularios funcionan en modo demostración: no envían datos.
 
@@ -31,11 +31,10 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 - Imágenes: `src/assets/images/` (registro y créditos en `src/content/images.ts`)
 
 ## Pendiente
-- [ ] Crear el repositorio en GitHub y primera publicación en GitHub Pages
 - [ ] Si pasa a cliente real: sustituir datos ficticios (dirección, teléfono, WhatsApp, correo, credenciales, cifras, opiniones) y fotos ilustrativas
 - [ ] Revisión profesional del texto de privacidad y de las normas de publicidad sanitaria
 
 ## Historial de entregas
 | Fecha | Cambios |
 |---|---|
-| 2026-11-01 | Primera versión |
+| 2026-11-01 | Primera versión publicada en GitHub Pages |
