@@ -1,7 +1,7 @@
 import type { StaticImageData } from "next/image";
 import boxDental from "@/assets/images/box-dental-luminoso.webp";
-import drPortrait from "@/assets/images/dr-retrato.webp";
-import heroConsultation from "@/assets/images/hero-consulta-conversacion.webp";
+import drAtWork from "@/assets/images/dr-nunez-atendiendo.webp";
+import drPortrait from "@/assets/images/dr-nunez-retrato.webp";
 import waitingRoom from "@/assets/images/sala-espera.webp";
 import ttoEndodontics from "@/assets/images/tto-endodoncia.webp";
 import ttoAesthetics from "@/assets/images/tto-estetica.webp";
@@ -11,17 +11,19 @@ import ttoPeriodontics from "@/assets/images/tto-periodoncia.webp";
 import ttoPrevention from "@/assets/images/tto-prevencion.webp";
 
 /**
- * Registro de imágenes. Todas proceden de Unsplash (licencia Unsplash: uso comercial gratuito,
+ * Registro de imágenes. «hero» y «doctor» son fotos entregadas por el cliente (credit: null).
+ * El resto proceden de Unsplash (licencia Unsplash: uso comercial gratuito,
  * sin atribución obligatoria; no se permite revenderlas sin modificar ni recopilarlas para
  * crear un servicio similar). Se verificó en la página de cada foto que NO eran «Unsplash+».
  *
- * ⚠️ Son fotografías ILUSTRATIVAS: no muestran al Dr. Núñez, su equipo ni su consulta.
+ * ⚠️ Las de Unsplash son ILUSTRATIVAS: no muestran al Dr. Núñez, su equipo ni su consulta.
  * Sustitúyelas por fotografía propia cuando esté disponible (mismo nombre de clave).
  */
 export interface SiteImage {
   src: StaticImageData;
   alt: string;
-  credit: { author: string; profile: string; source: string };
+  /** null = foto propia del cliente (no se etiqueta como ilustrativa ni aparece en créditos). */
+  credit: { author: string; profile: string; source: string } | null;
 }
 
 const unsplash = (author: string, handle: string, photoId: string) => ({
@@ -32,14 +34,14 @@ const unsplash = (author: string, handle: string, photoId: string) => ({
 
 export const images = {
   hero: {
-    src: heroConsultation,
-    alt: "Dentista conversando con una paciente sentada en el sillón de una consulta luminosa",
-    credit: unsplash("Harold Hisona", "harold_angus", "Bg81yWKZlMg"),
+    src: drAtWork,
+    alt: "El Dr. Ignacio Núñez revisa los dientes de una paciente en su consulta",
+    credit: null,
   },
   doctor: {
     src: drPortrait,
-    alt: "Retrato de un odontólogo de pelo canoso con delantal blanco, sonriendo",
-    credit: unsplash("Vidak", "vidak", "5vfc-1KQLtE"),
+    alt: "Retrato del Dr. Ignacio Núñez con delantal blanco y los brazos cruzados en su consulta",
+    credit: null,
   },
   clinic: {
     src: boxDental,

@@ -49,9 +49,8 @@ export default function HomePage() {
             </dl>
           </div>
           <div className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] sm:aspect-[5/4] lg:aspect-[4/5]">
-              <Image src={images.hero.src} alt={images.hero.alt} fill priority fetchPriority="high" sizes="(min-width: 1024px) 45vw, 100vw" placeholder="blur" className="object-cover" />
-              <div className="absolute left-4 top-4">{illustrative}</div>
+            <div className="relative aspect-[4/3.4] overflow-hidden rounded-[2rem] lg:aspect-[5/4.6]">
+              <Image src={images.hero.src} alt={images.hero.alt} fill priority fetchPriority="high" sizes="(min-width: 1024px) 45vw, 100vw" placeholder="blur" className="object-cover object-[45%_center]" />
             </div>
             <div className="absolute -bottom-6 left-4 right-4 flex items-center gap-4 rounded-2xl border border-line bg-card/95 p-4 shadow-xl shadow-ink/5 backdrop-blur sm:left-auto sm:right-6 sm:w-80 lg:-left-10 lg:right-auto">
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-sage text-accent">
@@ -72,8 +71,7 @@ export default function HomePage() {
           <div className="relative mx-auto w-full max-w-md lg:max-w-none" data-reveal>
             <div className="absolute -inset-2 -z-10 translate-x-3 translate-y-3 rounded-[2rem] md:-inset-3 md:translate-x-6 md:translate-y-6 bg-sage" />
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
-              <Image src={images.doctor.src} alt={images.doctor.alt} fill sizes="(min-width: 1024px) 40vw, 90vw" placeholder="blur" className="object-cover" />
-              <div className="absolute left-4 top-4">{illustrative}</div>
+              <Image src={images.doctor.src} alt={images.doctor.alt} fill sizes="(min-width: 1024px) 40vw, 90vw" placeholder="blur" className="object-cover object-[42%_center]" />
             </div>
           </div>
           <div>

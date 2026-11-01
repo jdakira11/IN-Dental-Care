@@ -10,7 +10,7 @@ export function Footer() {
     <footer id="pie" className="on-dark bg-deep text-white/80">
       <div className="container-x grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:py-20">
         <div>
-          <Logo tone="light" />
+          <Logo variant="stacked" />
           <p className="mt-6 max-w-xs text-[0.9375rem] leading-relaxed">
             Odontología particular en {contact.city}, {contact.region}. {siteConfig.yearsOfExperience} años cuidando sonrisas.
           </p>

@@ -6,7 +6,7 @@
 export type SocialNetwork = "instagram" | "facebook" | "tiktok" | "linkedin" | "youtube";
 
 export const siteConfig = {
-  name: "IIN Dental Care",
+  name: "IN Dental Care",
   doctor: "Dr. Ignacio Núñez",
   tagline: "Odontología particular en Vitacura",
   description:
@@ -23,7 +23,7 @@ export const siteConfig = {
     country: "Chile" as string | null,
     phone: "+56 2 2945 1180" as string | null,
     whatsapp: "56912345678" as string | null,
-    email: "agenda@iindentalcare.cl" as string | null,
+    email: "agenda@indentalcare.cl" as string | null,
     mapEmbedUrl: "https://www.google.com/maps?q=Vitacura,+Regi%C3%B3n+Metropolitana,+Chile&z=14&output=embed" as string | null,
     reference: "A pasos de metro Manquehue (5 min en auto) · Estacionamiento para pacientes",
   },

@@ -60,7 +60,7 @@ export function Header() {
     // `fixed` quedaría encerrado en la altura de la cabecera.
     <header className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow] duration-300 ${open ? "bg-paper shadow-[0_1px_0_var(--color-line)]" : scrolled || !isHome ? "bg-paper/90 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md" : "bg-transparent"}`}>
       <div className="container-x flex h-[4.75rem] items-center justify-between gap-6">
-        <Link href="/" aria-label="IIN Dental Care, inicio">
+        <Link href="/" aria-label="IN Dental Care, inicio">
           <Logo />
         </Link>
         <nav aria-label="Principal" className="hidden lg:block">
