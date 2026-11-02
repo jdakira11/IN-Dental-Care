@@ -46,3 +46,4 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 | 2026-11-01 | Títulos en Outfit; foto del doctor con marco en forma de diente; Previsión y pagos con ilustraciones propias en fichas |
 | 2026-11-01 | Intro animada al entrar (I → N, dibujo del diente, nombre, eslogan, servicios); una vez por sesión, botón «Saltar intro» |
 | 2026-11-01 | Salida de la intro más suave (1,6 s); cabeza del doctor sobresale del marco de diente (recorte propio) |
+| 2026-11-01 | Opiniones como encía con un diente por comentario |
