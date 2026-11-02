@@ -12,7 +12,7 @@
 
 ## Dirección de arte
 - Paleta blanco + verde salvia (tokens en `src/app/globals.css`): fondo `#f8f9f6`, alterno `#eff3ec`, salvia `#dbe5d6`, acento salvia profunda `#4a6753` (CTA, 6:1 con blanco), secciones oscuras verde grafito `#24332c`.
-- Tipografías (2): Instrument Serif (títulos) + Manrope (texto).
+- Tipografías (2): Outfit (títulos, pedida por el cliente) + Manrope (texto).
 - Logo del cliente (IN + diente, azul marino y turquesa): versión horizontal en la cabecera y apilada sobre tarjeta blanca en el pie; favicon con el símbolo.
 - Motivo gráfico: esquinas muy redondeadas, tarjetas con borde fino.
 - Tono: cercano y tranquilo, primera persona del doctor en su presentación.
@@ -43,3 +43,4 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 | 2026-11-01 | «Primera consulta» rediseñada como línea de tiempo con columna fija y aparición al hacer scroll (estructura de dentalrx.ca); 5 pasos |
 | 2026-11-01 | Tratamientos: fotos sustituidas por iconos planos propios, uno por servicio |
 | 2026-11-01 | Tratamientos desplegables: icono + nombre; clic para abrir y cerrar el detalle |
+| 2026-11-01 | Títulos en Outfit; foto del doctor con marco en forma de diente; Previsión y pagos con ilustraciones propias en fichas |

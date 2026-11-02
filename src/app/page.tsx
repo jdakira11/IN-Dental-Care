@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BookingForm } from "@/components/BookingForm";
+import { CoverageIllustration } from "@/components/CoverageIllustration";
 import { FixedImageBand } from "@/components/FixedImageBand";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { ToothFrame } from "@/components/ToothFrame";
 import { TreatmentCard } from "@/components/TreatmentCard";
-import { Calendar, Check, Clock, Mail, MapPin, Phone, Plus, Shield, Star, Tooth } from "@/components/icons";
+import { Calendar, Check, Clock, Mail, MapPin, Phone, Plus, Shield, Star } from "@/components/icons";
 import { SectionHeader } from "@/components/SectionHeader";
 import { siteConfig, telLink } from "@/config/site";
 import { band, booking, coverage, doctor, faq, firstVisit, hero } from "@/content/copy";
@@ -24,9 +26,9 @@ export default function HomePage() {
               <span className="h-2 w-2 rounded-full bg-accent" />
               {hero.eyebrow}
             </p>
-            <h1 id="titulo-portada" className="display-xl mt-6 max-w-[12ch] text-[clamp(2.9rem,7vw,5.6rem)]">
+            <h1 id="titulo-portada" className="display-xl mt-6 max-w-[15ch] text-[clamp(2.5rem,5.4vw,4.4rem)]">
               {hero.title.before}
-              <em className="text-accent">{hero.title.highlight}</em>
+              <em className="not-italic text-accent">{hero.title.highlight}</em>
               {hero.title.after}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">{hero.intro}</p>
@@ -42,7 +44,7 @@ export default function HomePage() {
               {hero.stats.map((s) => (
                 <div key={s.label}>
                   <dt className="sr-only">{s.label}</dt>
-                  <dd className="font-title text-4xl text-ink md:text-5xl">{s.value}</dd>
+                  <dd className="font-title text-3xl text-ink sm:text-4xl md:text-5xl">{s.value}</dd>
                   <dd className="mt-1 text-[0.8125rem] leading-snug text-ink-mute">{s.label}</dd>
                 </div>
               ))}
@@ -68,11 +70,8 @@ export default function HomePage() {
       {/* ── El doctor ── */}
       <section id="doctor" aria-labelledby="titulo-doctor" className="overflow-x-clip py-24 md:py-32">
         <div className="container-x grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div className="relative mx-auto w-full max-w-md lg:max-w-none" data-reveal>
-            <div className="absolute -inset-2 -z-10 translate-x-3 translate-y-3 rounded-[2rem] md:-inset-3 md:translate-x-6 md:translate-y-6 bg-sage" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
-              <Image src={images.doctor.src} alt={images.doctor.alt} fill sizes="(min-width: 1024px) 40vw, 90vw" placeholder="blur" className="object-cover object-[42%_center]" />
-            </div>
+          <div className="mx-auto w-full max-w-sm px-3 sm:max-w-md lg:max-w-lg" data-reveal>
+            <ToothFrame image={images.doctor.src} alt={images.doctor.alt} sizes="(min-width: 1024px) 34vw, 85vw" />
           </div>
           <div>
             <p className="eyebrow" data-reveal>
@@ -97,7 +96,7 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-            <blockquote className="mt-8 border-l-2 border-sage-mid pl-5 font-title text-2xl italic text-ink-soft" data-reveal>
+            <blockquote className="mt-8 border-l-2 border-sage-mid pl-5 font-title text-2xl font-light text-ink-soft" data-reveal>
               «{doctor.quote}»
             </blockquote>
           </div>
@@ -184,13 +183,18 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeader id="titulo-prevision" eyebrow={coverage.eyebrow} title={coverage.title} intro={coverage.intro} />
           <ul className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {coverage.items.map((c) => (
-              <li key={c.title} className="rounded-2xl border border-line bg-card p-6" data-reveal>
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-sage text-accent">
-                  <Tooth width={20} height={20} />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold">{c.title}</h3>
-                <p className="mt-1.5 text-[0.9375rem] text-ink-soft">{c.text}</p>
+            {coverage.items.map((c, i) => (
+              <li key={c.id} className="group flex flex-col overflow-hidden rounded-3xl border border-line bg-card transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5" data-reveal style={{ "--reveal-delay": `${i * 90}ms` } as React.CSSProperties}>
+                {/* Ficha: ilustración sobre panel suave + texto */}
+                <div className="relative m-2 grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.25rem] bg-paper-2">
+                  <span aria-hidden className="absolute aspect-square h-[78%] rounded-full bg-sage transition-transform duration-700 group-hover:scale-110" />
+                  <CoverageIllustration id={c.id} className="relative w-[78%]" />
+                  <span className="absolute left-4 top-4 font-title text-sm text-ink-mute">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+                <div className="px-6 pb-7 pt-4">
+                  <h3 className="font-title text-xl">{c.title}</h3>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{c.text}</p>
+                </div>
               </li>
             ))}
           </ul>

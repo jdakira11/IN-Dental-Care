@@ -61,10 +61,10 @@ export const coverage = {
   title: "Atención particular, con facilidades",
   intro: "Somos una consulta particular. Te entregamos la documentación para que solicites tus reembolsos.",
   items: [
-    { title: "Reembolso Isapre", text: "Boleta y detalle de prestaciones para tu solicitud de reembolso." },
-    { title: "Seguros complementarios", text: "Completamos los formularios de tu seguro de salud o dental." },
-    { title: "Pago en cuotas", text: "Tarjetas de crédito y débito, transferencia y planes de pago por etapas." },
-    { title: "Presupuesto por escrito", text: "Conoces el valor total antes de comenzar. Sin costos sorpresa." },
+    { id: "reembolso", title: "Reembolso Isapre", text: "Boleta y detalle de prestaciones para tu solicitud de reembolso." },
+    { id: "seguros", title: "Seguros complementarios", text: "Completamos los formularios de tu seguro de salud o dental." },
+    { id: "cuotas", title: "Pago en cuotas", text: "Tarjetas de crédito y débito, transferencia y planes de pago por etapas." },
+    { id: "presupuesto", title: "Presupuesto por escrito", text: "Conoces el valor total antes de comenzar. Sin costos sorpresa." },
   ],
 };
 

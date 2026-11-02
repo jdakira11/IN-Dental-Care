@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Manrope } from "next/font/google";
+import { Manrope, Outfit } from "next/font/google";
 import { FloatingContact } from "@/components/FloatingContact";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -7,8 +7,8 @@ import { RevealObserver } from "@/components/RevealObserver";
 import { getSiteUrl, siteConfig } from "@/config/site";
 import "./globals.css";
 
-// Títulos: serif fina y moderna (elegancia sobria). Texto: sans humanista muy legible.
-const title = Instrument_Serif({ variable: "--font-title-face", subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
+// Títulos: Outfit (sans geométrica, pedida por el cliente). Texto: Manrope (sans humanista muy legible).
+const title = Outfit({ variable: "--font-title-face", subsets: ["latin"] });
 const body = Manrope({ variable: "--font-body-face", subsets: ["latin"] });
 
 export const metadata: Metadata = {
