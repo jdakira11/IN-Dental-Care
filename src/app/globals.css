@@ -200,7 +200,7 @@
 
 /* ── Intro (IntroSplash) ─────────────────────────────────────────────────────────────
    Línea de tiempo (s): I 0.15 → I se desplaza y sale la N 0.9 → diente 1.8–3.6 → nombre 3.3
-   → línea 3.9 → eslogan 4.2 → servicios 4.7 + 0.35 c/u → salida 7.3–8.0 (TOTAL_MS en el componente). */
+   → línea 3.9 → eslogan 4.2 → servicios 4.7 + 0.35 c/u → salida suave 7.1–8.7 (TOTAL_MS en el componente). */
 .intro {
   position: fixed;
   inset: 0;
@@ -208,16 +208,16 @@
   display: grid;
   place-items: center;
   background: var(--color-paper);
-  animation: intro-out 0.7s 7.3s var(--ease-out-soft) forwards;
+  animation: intro-out 1.6s 7.1s cubic-bezier(0.45, 0, 0.2, 1) forwards;
 }
 .sin-intro .intro {
   display: none;
 }
 .intro.intro-leaving {
-  animation: intro-out 0.4s forwards;
+  animation: intro-out 0.6s ease-out forwards;
 }
 .intro-stage {
-  animation: intro-zoom 0.7s 7.3s ease-in forwards;
+  animation: intro-zoom 1.6s 7.1s cubic-bezier(0.45, 0, 0.2, 1) forwards;
 }
 .intro-i-pop {
   transform-box: fill-box;
@@ -276,7 +276,8 @@
 }
 @keyframes intro-zoom {
   to {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    filter: blur(2px);
   }
 }
 @keyframes intro-pop {

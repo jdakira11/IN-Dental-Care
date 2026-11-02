@@ -73,8 +73,9 @@ export default function HomePage() {
       {/* ── El doctor ── */}
       <section id="doctor" aria-labelledby="titulo-doctor" className="overflow-x-clip py-24 md:py-32">
         <div className="container-x grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div className="mx-auto w-full max-w-sm px-3 sm:max-w-md lg:max-w-lg" data-reveal>
-            <ToothFrame image={images.doctor.src} alt={images.doctor.alt} sizes="(min-width: 1024px) 34vw, 85vw" />
+          <div className="mx-auto w-full max-w-sm px-3 pt-10 sm:max-w-md lg:max-w-lg" data-reveal>
+            {/* La foto es más grande que el marco: el cuerpo queda dentro del diente y la cabeza sale por arriba */}
+            <ToothFrame image={images.doctor.src} cutout={images.doctorHead.src} box={{ left: -19.8, top: -11.8, width: 160, height: 132.9 }} alt={images.doctor.alt} sizes="(min-width: 1024px) 55vw, 135vw" />
           </div>
           <div>
             <p className="eyebrow" data-reveal>

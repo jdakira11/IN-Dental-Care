@@ -1,6 +1,7 @@
 import type { StaticImageData } from "next/image";
 import boxDental from "@/assets/images/box-dental-luminoso.webp";
 import drAtWork from "@/assets/images/dr-nunez-atendiendo.webp";
+import drHead from "@/assets/images/dr-nunez-cabeza.webp";
 import drPortrait from "@/assets/images/dr-nunez-retrato.webp";
 
 /**
@@ -34,6 +35,12 @@ export const images = {
   doctor: {
     src: drPortrait,
     alt: "Retrato del Dr. Ignacio Núñez con delantal blanco y los brazos cruzados en su consulta",
+    credit: null,
+  },
+  /** Solo la cabeza del retrato, fondo transparente (recorte propio): sobresale del marco de diente. */
+  doctorHead: {
+    src: drHead,
+    alt: "",
     credit: null,
   },
   clinic: {

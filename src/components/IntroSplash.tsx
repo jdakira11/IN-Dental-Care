@@ -8,7 +8,7 @@ import { treatments } from "@/content/treatments";
 import { TreatmentIcon } from "./TreatmentIcon";
 
 /** Duración total en ms; debe coincidir con el retraso + duración de `intro-out` en globals.css. */
-const TOTAL_MS = 8000;
+const TOTAL_MS = 8800;
 
 /**
  * Animación de entrada: la «I» aparece y se desplaza dejando paso a la «N», se dibuja el diente
@@ -46,7 +46,7 @@ export function IntroSplash() {
   useEffect(() => {
     if (state === "done") document.documentElement.style.overflow = "";
     if (state !== "leaving") return;
-    const t = window.setTimeout(() => setState("done"), 450);
+    const t = window.setTimeout(() => setState("done"), 650);
     return () => window.clearTimeout(t);
   }, [state]);
 
