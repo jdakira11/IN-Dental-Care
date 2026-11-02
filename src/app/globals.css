@@ -198,6 +198,124 @@
   color: var(--color-card);
 }
 
+/* ── Intro (IntroSplash) ─────────────────────────────────────────────────────────────
+   Línea de tiempo (s): I 0.15 → I se desplaza y sale la N 0.9 → diente 1.8–3.6 → nombre 3.3
+   → línea 3.9 → eslogan 4.2 → servicios 4.7 + 0.35 c/u → salida 7.3–8.0 (TOTAL_MS en el componente). */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: var(--color-paper);
+  animation: intro-out 0.7s 7.3s var(--ease-out-soft) forwards;
+}
+.sin-intro .intro {
+  display: none;
+}
+.intro.intro-leaving {
+  animation: intro-out 0.4s forwards;
+}
+.intro-stage {
+  animation: intro-zoom 0.7s 7.3s ease-in forwards;
+}
+.intro-i-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: intro-pop 0.6s 0.15s var(--ease-out-soft) both;
+}
+.intro-i-slide {
+  animation: intro-slide 0.8s 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.intro-n {
+  animation: intro-n 0.8s 1s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+/* Máscara que revela el diente del logo original: trazo blanco que se «dibuja» */
+.intro-draw {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 44;
+  stroke-linecap: round;
+  stroke-dasharray: 1 2;
+  stroke-dashoffset: 1.2;
+  animation: intro-draw var(--dur) var(--delay) ease-in-out forwards;
+}
+.intro-draw-a {
+  --dur: 0.6s;
+  --delay: 1.8s;
+}
+.intro-draw-b {
+  --dur: 1s;
+  --delay: 2.25s;
+}
+.intro-draw-c {
+  --dur: 0.5s;
+  --delay: 3.1s;
+}
+.intro-letter {
+  display: inline-block;
+  animation: intro-rise 0.5s calc(3.3s + var(--i) * 45ms) var(--ease-out-soft) both;
+}
+.intro-rule {
+  animation: intro-rule 0.7s 3.9s var(--ease-out-soft) both;
+}
+.intro-slogan {
+  animation: intro-rise 0.7s 4.2s var(--ease-out-soft) both;
+}
+.intro-service {
+  animation: intro-rise 0.55s calc(4.7s + var(--i) * 0.35s) var(--ease-out-soft) both;
+}
+.intro-skip {
+  animation: intro-rise 0.5s 0.6s both;
+}
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes intro-zoom {
+  to {
+    transform: scale(1.05);
+  }
+}
+@keyframes intro-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+@keyframes intro-slide {
+  from {
+    transform: translateX(151px);
+  }
+}
+/* La N se descubre de izquierda a derecha mientras la I se aparta */
+@keyframes intro-n {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes intro-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+}
+@keyframes intro-rule {
+  from {
+    transform: scaleX(0);
+  }
+}
+
 .no-scrollbar {
   scrollbar-width: none;
 }

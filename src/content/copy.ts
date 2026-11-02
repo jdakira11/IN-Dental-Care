@@ -102,3 +102,8 @@ export const booking = {
   privacyNote:
     "No incluyas información clínica en este formulario. Los detalles de tu salud los conversamos en la consulta.",
 };
+
+/** Animación de entrada (IntroSplash): se muestra una vez por sesión, solo en la portada. */
+export const intro = {
+  slogan: "Sonrisas sanas, atención personal",
+};

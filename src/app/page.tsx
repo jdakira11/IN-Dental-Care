@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BookingForm } from "@/components/BookingForm";
 import { CoverageIllustration } from "@/components/CoverageIllustration";
 import { FixedImageBand } from "@/components/FixedImageBand";
+import { IntroSplash } from "@/components/IntroSplash";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { ToothFrame } from "@/components/ToothFrame";
 import { TreatmentCard } from "@/components/TreatmentCard";
@@ -18,6 +19,8 @@ export default function HomePage() {
   const { contact, hours } = siteConfig;
   return (
     <>
+      <IntroSplash />
+
       {/* ── Portada ── */}
       <section id="inicio" aria-labelledby="titulo-portada" className="relative overflow-hidden bg-[radial-gradient(ellipse_at_top_left,var(--color-paper-2),var(--color-paper)_60%)] pb-16 pt-28 md:pb-24 md:pt-36">
         <div className="container-x grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">

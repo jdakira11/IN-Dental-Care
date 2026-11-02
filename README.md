@@ -44,3 +44,4 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 | 2026-11-01 | Tratamientos: fotos sustituidas por iconos planos propios, uno por servicio |
 | 2026-11-01 | Tratamientos desplegables: icono + nombre; clic para abrir y cerrar el detalle |
 | 2026-11-01 | Títulos en Outfit; foto del doctor con marco en forma de diente; Previsión y pagos con ilustraciones propias en fichas |
+| 2026-11-01 | Intro animada al entrar (I → N, dibujo del diente, nombre, eslogan, servicios); una vez por sesión, botón «Saltar intro» |
