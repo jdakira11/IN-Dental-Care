@@ -47,3 +47,4 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 | 2026-11-01 | Intro animada al entrar (I → N, dibujo del diente, nombre, eslogan, servicios); una vez por sesión, botón «Saltar intro» |
 | 2026-11-01 | Salida de la intro más suave (1,6 s); cabeza del doctor sobresale del marco de diente (recorte propio) |
 | 2026-11-01 | Opiniones: vuelta al diseño anterior (se descarta la encía) + carrusel automático con zoom de la opinión activa |
+| 2026-11-01 | Opiniones: transición continua (tamaño y opacidad según la distancia al centro), laterales desvanecidos; móvil sin controles, se desliza con el dedo |

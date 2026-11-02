@@ -1,81 +1,136 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { testimonials } from "@/content/testimonials";
 import { ChevronLeft, ChevronRight, Star } from "./icons";
 
 const INTERVAL_MS = 4500;
+const GLIDE_MS = 900;
 const REDUCED = "(prefers-reduced-motion: reduce)";
-function subscribeReducedMotion(onChange: () => void) {
-  const mq = window.matchMedia(REDUCED);
+const DESKTOP = "(min-width: 768px)";
+const subscribeMedia = (query: string) => (onChange: () => void) => {
+  const mq = window.matchMedia(query);
   mq.addEventListener("change", onChange);
   return () => mq.removeEventListener("change", onChange);
-}
+};
+const subscribeReduced = subscribeMedia(REDUCED);
+const subscribeDesktop = subscribeMedia(DESKTOP);
 
 /**
- * Opiniones en bucle (adaptado de la skill web-prototipo). Avanza solo y la opinión que llega al
- * centro hace zoom hacia el frente; las demás quedan atrás, más pequeñas y atenuadas.
- * Se pausa al pasar el ratón o al enfocar con teclado, tiene botón de pausa (WCAG 2.2.2) y no
- * avanza sola si el sistema pide reducir el movimiento.
+ * Opiniones en bucle sobre un desplazamiento real (scroll-snap), como el carrusel de catálogo de
+ * la skill: en cada fotograma se calcula la cercanía de cada tarjeta al centro (--p: 1 en el centro,
+ * 0 a una tarjeta de distancia) y con ella cambian tamaño, opacidad y brillo de forma continua.
+ * Los bordes se funden con una máscara. En móvil las laterales encogen y se apagan menos (--s, --o)
+ * para que asomen y se note que hay más opiniones.
+ *
+ * Escritorio: avance automático cada 4,5 s, flechas y Pausar (WCAG 2.2.2); se pausa con el ratón
+ * encima o con el foco dentro. Móvil: sin controles ni avance automático; se desliza con el dedo
+ * y los puntos indican cuántas opiniones hay. Sin avance automático con «reducir movimiento».
+ * Bucle: tres copias; al detenerse en una copia lateral se recoloca sin animación en la central.
  */
 export function TestimonialsCarousel() {
   const items = testimonials;
   const n = items.length;
-  // Tres copias para un bucle sin saltos visibles; se trabaja siempre sobre la copia central.
   const loop = [...items, ...items, ...items];
-  const [index, setIndex] = useState(n);
-  const [animate, setAnimate] = useState(true);
-  const reducedMotion = useSyncExternalStore(subscribeReducedMotion, () => window.matchMedia(REDUCED).matches, () => false);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const frame = useRef(0);
+  const settle = useRef(0);
+  const [active, setActive] = useState(n);
+  const reduced = useSyncExternalStore(subscribeReduced, () => window.matchMedia(REDUCED).matches, () => false);
+  const desktop = useSyncExternalStore(subscribeDesktop, () => window.matchMedia(DESKTOP).matches, () => false);
   const [userChoice, setUserChoice] = useState<boolean | null>(null);
-  const playing = userChoice ?? !reducedMotion;
+  const playing = desktop && (userChoice ?? !reduced);
   const [hovered, setHovered] = useState(false);
-  const [metrics, setMetrics] = useState({ viewport: 0, step: 0, card: 0 });
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const firstCardRef = useRef<HTMLLIElement>(null);
 
-  // Medidas para centrar la tarjeta activa.
-  useLayoutEffect(() => {
-    const measure = () => {
-      const vp = viewportRef.current;
-      const card = firstCardRef.current;
-      if (!vp || !card) return;
-      const gap = parseFloat(getComputedStyle(card.parentElement!).columnGap || "0");
-      setMetrics({ viewport: vp.clientWidth, step: card.offsetWidth + gap, card: card.offsetWidth });
-    };
-    measure();
-    const ro = new ResizeObserver(measure);
-    if (viewportRef.current) ro.observe(viewportRef.current);
+  const cards = () => Array.from(scrollerRef.current?.querySelectorAll<HTMLElement>("[data-card]") ?? []);
+  const leftFor = (el: HTMLElement, card: HTMLElement) => card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2;
+
+  const update = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const center = el.scrollLeft + el.clientWidth / 2;
+    const gap = parseFloat(getComputedStyle(el).columnGap || "0");
+    let best = 0;
+    let bestDist = Infinity;
+    cards().forEach((card, i) => {
+      const d = Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+      const p = Math.max(0, 1 - d / (card.offsetWidth + gap));
+      card.style.setProperty("--p", (p * p * (3 - 2 * p)).toFixed(3)); // suavizado (smoothstep)
+      if (d < bestDist) {
+        bestDist = d;
+        best = i;
+      }
+    });
+    setActive(best);
+    return best;
+  }, []);
+
+  // Al detenerse en una copia lateral, salta sin animación a la misma tarjeta de la copia central.
+  const recenter = useCallback(() => {
+    const el = scrollerRef.current;
+    const best = update();
+    if (!el || best === undefined || (best >= n && best < 2 * n)) return;
+    const target = cards()[best < n ? best + n : best - n];
+    el.scrollTo({ left: leftFor(el, target), behavior: "instant" });
+    update();
+  }, [n, update]);
+
+  // Posición inicial en la copia central y recálculo al cambiar el tamaño.
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      const card = cards()[n];
+      if (card && el.scrollLeft === 0) el.scrollTo({ left: leftFor(el, card), behavior: "instant" });
+      update();
+    });
+    ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [n, update]);
 
-  const go = useCallback((delta: number) => {
-    setAnimate(true);
-    setIndex((i) => i + delta);
-  }, []);
+  const onScroll = () => {
+    cancelAnimationFrame(frame.current);
+    frame.current = requestAnimationFrame(update);
+    window.clearTimeout(settle.current);
+    settle.current = window.setTimeout(recenter, 180);
+  };
 
-  // Avance automático: la siguiente opinión entra desde la derecha.
+  // Desplazamiento propio (más lento y suave que el nativo): el snap se suspende mientras dura.
+  const glide = useRef(0);
+  const goTo = useCallback(
+    (index: number) => {
+      const el = scrollerRef.current;
+      const card = cards()[Math.max(0, Math.min(3 * n - 1, index))];
+      if (!el || !card) return;
+      const to = leftFor(el, card);
+      cancelAnimationFrame(glide.current);
+      if (reduced) {
+        el.scrollTo({ left: to, behavior: "instant" });
+        return;
+      }
+      const from = el.scrollLeft;
+      const start = performance.now();
+      el.style.scrollSnapType = "none";
+      const step = (now: number) => {
+        const t = Math.min(1, (now - start) / GLIDE_MS);
+        const eased = t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2; // easeInOutCubic
+        el.scrollLeft = from + (to - from) * eased;
+        if (t < 1) glide.current = requestAnimationFrame(step);
+        else el.style.scrollSnapType = "";
+      };
+      glide.current = requestAnimationFrame(step);
+    },
+    [n, reduced],
+  );
+
+  // Avance automático (solo escritorio).
   useEffect(() => {
     if (!playing || hovered) return;
-    const id = window.setInterval(() => go(1), INTERVAL_MS);
+    const id = window.setInterval(() => goTo(active + 1), INTERVAL_MS);
     return () => window.clearInterval(id);
-  }, [playing, hovered, go]);
+  }, [playing, hovered, active, goTo]);
 
-  // Al salir de la copia central, se recoloca sin animación en la equivalente.
-  const onTransitionEnd = () => {
-    if (index < n || index >= 2 * n) {
-      setAnimate(false);
-      setIndex((i) => (((i % n) + n) % n) + n);
-    }
-  };
-  useEffect(() => {
-    if (!animate) {
-      const id = requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
-      return () => cancelAnimationFrame(id);
-    }
-  }, [animate]);
-
-  const offset = metrics.viewport / 2 - (index * metrics.step + metrics.card / 2);
-  const active = ((index % n) + n) % n;
+  const current = active % n;
 
   return (
     <div
@@ -88,66 +143,56 @@ export function TestimonialsCarousel() {
       onFocusCapture={() => setHovered(true)}
       onBlurCapture={() => setHovered(false)}
     >
-      <div ref={viewportRef} className="relative -mx-5 overflow-hidden py-10 md:mx-0">
-        <ul
-          className="flex gap-3 md:gap-5"
-          style={{
-            transform: `translate3d(${offset}px,0,0)`,
-            transition: animate ? "transform 1.1s cubic-bezier(0.22, 1, 0.36, 1)" : "none",
-            visibility: metrics.step ? "visible" : "hidden",
-          }}
-          onTransitionEnd={(e) => e.target === e.currentTarget && onTransitionEnd()}
-        >
-          {loop.map((t, i) => {
-            const isActive = i === index;
-            return (
-              <li key={i} ref={i === 0 ? firstCardRef : undefined} aria-hidden={!isActive} className="w-[17rem] shrink-0 md:w-[22rem]">
-                {/* Zoom hacia el frente: la activa crece, se ilumina y gana sombra */}
-                <figure
-                  className={`flex h-full flex-col rounded-3xl border p-7 transition-[transform,opacity,background-color,border-color,box-shadow] duration-700 ease-[var(--ease-out-soft)] md:p-8 ${
-                    isActive ? "scale-100 border-white/25 bg-white/[0.09] opacity-100 shadow-2xl shadow-black/40" : "scale-[0.82] border-white/10 bg-white/[0.03] opacity-40"
-                  }`}
-                >
-                  <div className="flex gap-1 text-metal" aria-label="5 de 5 estrellas">
-                    {Array.from({ length: 5 }, (_, s) => (
-                      <Star key={s} />
-                    ))}
-                  </div>
-                  <blockquote className="mt-5 flex-1 leading-relaxed text-white/85 md:text-lg">«{t.text}»</blockquote>
-                  <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
-                    <span aria-hidden className="grid h-10 w-10 place-items-center rounded-full bg-metal/15 font-title text-lg text-metal">
-                      {t.name[0]}
-                    </span>
-                    <span className="text-sm">
-                      <span className="block font-semibold text-white">{t.name}</span>
-                      <span className="text-white/70">{t.treatment}</span>
-                    </span>
-                  </figcaption>
-                </figure>
-              </li>
-            );
-          })}
-        </ul>
+      <div
+        ref={scrollerRef}
+        onScroll={onScroll}
+        className="no-scrollbar relative -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain py-10 [--card:min(72vw,22rem)] [mask-image:linear-gradient(90deg,transparent,#000_7%,#000_93%,transparent)] md:[mask-image:linear-gradient(90deg,transparent,#000_18%,#000_82%,transparent)] [padding-inline:calc((100%-var(--card))/2)] md:mx-0 md:gap-6"
+      >
+        {loop.map((t, i) => (
+          <figure
+            key={i}
+            data-card
+            aria-hidden={i !== active}
+            className="flex w-[var(--card)] shrink-0 snap-center snap-always flex-col rounded-3xl border p-7 will-change-transform md:p-8 [--s:0.9] [--o:0.4] md:[--s:0.8] md:[--o:0.2] [transform:scale(calc(var(--s)_+_(1_-_var(--s))*var(--p,0)))] [opacity:calc(var(--o)_+_(1_-_var(--o))*var(--p,0))] [background:rgb(255_255_255/calc(0.03_+_0.06*var(--p,0)))] [border-color:rgb(255_255_255/calc(0.08_+_0.17*var(--p,0)))] [box-shadow:0_40px_70px_-30px_rgb(0_0_0/calc(0.55*var(--p,0)))]"
+          >
+            <div className="flex gap-1 text-metal" aria-label="5 de 5 estrellas">
+              {Array.from({ length: 5 }, (_, s) => (
+                <Star key={s} />
+              ))}
+            </div>
+            <blockquote className="mt-5 flex-1 leading-relaxed text-white/85 md:text-lg">«{t.text}»</blockquote>
+            <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
+              <span aria-hidden className="grid h-10 w-10 place-items-center rounded-full bg-metal/15 font-title text-lg text-metal">
+                {t.name[0]}
+              </span>
+              <span className="text-sm">
+                <span className="block font-semibold text-white">{t.name}</span>
+                <span className="text-white/70">{t.treatment}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
 
-      <div className="mt-6 flex items-center justify-center gap-4">
-        <button type="button" onClick={() => go(-1)} className="grid h-11 w-11 place-items-center rounded-full border border-white/25 hover:bg-white/10" aria-label="Opinión anterior">
+      <div className="mt-4 flex items-center justify-center gap-4">
+        <button type="button" onClick={() => goTo(active - 1)} className="hidden h-11 w-11 place-items-center rounded-full border border-white/25 hover:bg-white/10 md:grid" aria-label="Opinión anterior">
           <ChevronLeft />
         </button>
+        {/* Indicador de posición (en móvil es el único control: se desliza con el dedo) */}
         <div className="flex gap-2" aria-hidden>
           {items.map((_, i) => (
-            <span key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === active ? "w-6 bg-metal" : "w-1.5 bg-white/30"}`} />
+            <span key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === current ? "w-6 bg-metal" : "w-1.5 bg-white/30"}`} />
           ))}
         </div>
-        <button type="button" onClick={() => go(1)} className="grid h-11 w-11 place-items-center rounded-full border border-white/25 hover:bg-white/10" aria-label="Opinión siguiente">
+        <button type="button" onClick={() => goTo(active + 1)} className="hidden h-11 w-11 place-items-center rounded-full border border-white/25 hover:bg-white/10 md:grid" aria-label="Opinión siguiente">
           <ChevronRight />
         </button>
-        <button type="button" onClick={() => setUserChoice(!playing)} className="ml-2 rounded-full border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] hover:bg-white/10" aria-pressed={!playing}>
+        <button type="button" onClick={() => setUserChoice(!playing)} className="ml-2 hidden rounded-full border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] hover:bg-white/10 md:block" aria-pressed={!playing}>
           {playing ? "Pausar" : "Reproducir"}
         </button>
       </div>
       <p className="sr-only" aria-live={playing ? "off" : "polite"}>
-        Opinión {active + 1} de {n}: {items[active].text} — {items[active].name}
+        Opinión {current + 1} de {n}: {items[current].text} — {items[current].name}
       </p>
     </div>
   );
