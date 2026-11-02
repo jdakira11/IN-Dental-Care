@@ -6,13 +6,13 @@ import { FixedImageBand } from "@/components/FixedImageBand";
 import { IntroSplash } from "@/components/IntroSplash";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { ToothFrame } from "@/components/ToothFrame";
-import { TestimonialsGum } from "@/components/TestimonialsGum";
 import { TreatmentCard } from "@/components/TreatmentCard";
-import { Calendar, Check, Clock, Mail, MapPin, Phone, Plus, Shield } from "@/components/icons";
+import { Calendar, Check, Clock, Mail, MapPin, Phone, Plus, Shield, Star } from "@/components/icons";
 import { SectionHeader } from "@/components/SectionHeader";
 import { siteConfig, telLink } from "@/config/site";
 import { band, booking, coverage, doctor, faq, firstVisit, hero } from "@/content/copy";
 import { images } from "@/content/images";
+import { testimonials } from "@/content/testimonials";
 import { treatments } from "@/content/treatments";
 
 export default function HomePage() {
@@ -149,7 +149,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Testimonios: encía con un diente por opinión ── */}
+      {/* ── Testimonios ── */}
       <section id="opiniones" aria-labelledby="titulo-opiniones" className="on-dark bg-deep py-24 text-white md:py-32">
         <div className="container-x">
           <SectionHeader
@@ -158,7 +158,27 @@ export default function HomePage() {
             title="Lo que dicen nuestros pacientes"
             tag={siteConfig.showContentNotices && <span className="notice-tag text-metal">Opiniones ilustrativas</span>}
           />
-          <TestimonialsGum />
+          <ul className="no-scrollbar -mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 xl:grid-cols-4">
+            {testimonials.map((t) => (
+              <li key={t.name} className="flex w-[80vw] max-w-sm shrink-0 snap-center flex-col rounded-3xl border border-white/10 bg-white/[0.04] p-7 md:w-auto md:max-w-none" data-reveal>
+                <div className="flex gap-1 text-metal" aria-label="5 de 5 estrellas">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Star key={i} />
+                  ))}
+                </div>
+                <blockquote className="mt-5 flex-1 leading-relaxed text-white/85">«{t.text}»</blockquote>
+                <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
+                  <span aria-hidden className="grid h-10 w-10 place-items-center rounded-full bg-metal/15 font-title text-lg text-metal">
+                    {t.name[0]}
+                  </span>
+                  <p className="text-sm">
+                    <span className="block font-semibold text-white">{t.name}</span>
+                    <span className="text-white/70">{t.treatment}</span>
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

@@ -15,10 +15,6 @@
   --color-deep: #24332c; /* secciones oscuras: verde grafito */
   --color-accent: #4a6753; /* salvia profunda: CTA (contraste 6:1 con blanco) */
   --color-metal: #c9d9c2; /* detalles sobre fondo oscuro */
-  --color-gum: #d9a3a7; /* encía (sección de opiniones) */
-  --color-gum-deep: #c4868c;
-  --color-ivory: #fbf9f4; /* esmalte de los dientes */
-  --color-ivory-shade: #ece7dc;
 
   /* Solo dos familias: títulos y texto (definidas con next/font en layout.tsx) */
   --font-title: var(--font-title-face), ui-sans-serif, system-ui, sans-serif;
