@@ -1,0 +1,27 @@
+2:"$Sreact.fragment"
+3:"/IN-Dental-Care/_next/static/chunks/2ydr-hc444flg.js"
+4:"/IN-Dental-Care/_next/static/chunks/1jtvq2sl7wjvx.js"
+5:I[39756,["$3","$4"],"default"]
+6:I[37457,["$3","$4"],"default"]
+b:I[5500,["$3","$4"],"Image"]
+c:I[97367,["$3","$4"],"OutletBoundary"]
+d:"$Sreact.suspense"
+10:"ViewportBoundary"
+11:I[97367,["$3","$4"],"$10"]
+12:"MetadataBoundary"
+13:I[97367,["$3","$4"],"$12"]
+14:I[27201,["$3","$4"],"IconMark"]
+8:X
+8:C
+9:X
+a:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$2","c",{"children":[["$","article",null,{"className":"container-x pb-24 pt-32 md:pb-36 md:pt-44","children":["$","div",null,{"className":"mx-auto max-w-3xl","children":[["$","h1",null,{"className":"display-md text-center","children":"Créditos fotográficos"}],"$undefined",["$","div",null,{"className":"mt-10 space-y-5 text-[1.0625rem] leading-relaxed text-ink-soft [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mt-12 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-ink [&_li]:ml-5 [&_li]:list-disc","children":[["$","p",null,{"children":["Las fotografías de esta web son imágenes ilustrativas publicadas en"," ",["$","a",null,{"href":"https://unsplash.com","target":"_blank","rel":"noopener noreferrer","children":"Unsplash"}]," ","bajo la"," ",["$","a",null,{"href":"https://unsplash.com/license","target":"_blank","rel":"noopener noreferrer","children":"licencia de Unsplash"}],". No muestran al Dr. Núñez, a su equipo ni su consulta (salvo sus retratos, que son fotografías propias). Gracias a sus autores:"]}],["$","ul",null,{"className":"!mt-8 grid gap-4 sm:grid-cols-2","children":[["$","li","clinic",{"className":"!ml-0 flex !list-none items-center gap-4","children":[["$","span",null,{"className":"relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-sage","children":["$","$Lb",null,{"src":{"src":"/IN-Dental-Care/_next/static/media/box-dental-luminoso.09q53jxkb3j34.webp","width":1800,"height":1200,"blurWidth":8,"blurHeight":5,"blurDataURL":"data:image/webp;base64,UklGRt4AAABXRUJQVlA4TNIAAAAvBwABAM1VICICHgiACQMAAID7rZBHAIADAAAAAAAAAAAAAAAAAAAAAAAAAEAADko+BrYDHO55agEAADwQkBMAAACA87//VU1FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA5oEAmwAAAACc/9YLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACRv+p9kXGmLwL40dPfgoAZbG+CAGrapBpOfTO+yI5mQys4VIOqgIsLRFfSu5yygraX8FPXmHxX/lMy3iHMfT/XcwA="},"alt":"","fill":true,"sizes":"64px","className":"object-cover"}]}],["$","span",null,{"className":"text-[0.9375rem]","children":[["$","a",null,{"href":"https://unsplash.com/photos/Fdku_oMrDvk","target":"_blank","rel":"noopener noreferrer","children":"Foto"}]," ","de"," ",["$","a",null,{"href":"https://unsplash.com/@karibjorn","target":"_blank","rel":"noopener noreferrer","children":"Kari Bjorn Photography"}]]}]]}]]}]]}]]}]}],null,["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]]}],"p":"$@f","v":null,"s":"$9"}}]]
+1:[["children",{"s":"creditos","h":64,"d":{"r":["$","$2","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"}]]
+0:{"t":{"t":{"s":"","h":16,"c":"$Q1"},"h":{"r":["$","$2","h",{"children":[null,["$","$L11",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L13",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$d",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Créditos fotográficos · IN Dental Care"}],["$","meta","1",{"name":"description","content":"Consulta odontológica particular del Dr. Ignacio Núñez en Vitacura. 20 años de experiencia en implantes, rehabilitación oral, estética y ortodoncia."}],["$","link","2",{"rel":"canonical","href":"https://jdakira11.github.io/IN-Dental-Care/creditos/"}],["$","meta","3",{"property":"og:title","content":"IN Dental Care · Dentista en Vitacura"}],["$","meta","4",{"property":"og:description","content":"Consulta odontológica particular del Dr. Ignacio Núñez en Vitacura. 20 años de experiencia en implantes, rehabilitación oral, estética y ortodoncia."}],["$","meta","5",{"property":"og:site_name","content":"IN Dental Care"}],["$","meta","6",{"property":"og:locale","content":"es_CL"}],["$","meta","7",{"property":"og:type","content":"website"}],["$","meta","8",{"name":"twitter:card","content":"summary"}],["$","meta","9",{"name":"twitter:title","content":"IN Dental Care · Dentista en Vitacura"}],["$","meta","10",{"name":"twitter:description","content":"Consulta odontológica particular del Dr. Ignacio Núñez en Vitacura. 20 años de experiencia en implantes, rehabilitación oral, estética y ortodoncia."}],["$","link","11",{"rel":"icon","href":"/IN-Dental-Care/icon.png?icon.2_gkidu4toya9.png","sizes":"512x512","type":"image/png"}],["$","link","12",{"rel":"apple-touch-icon","href":"/IN-Dental-Care/apple-icon.png?apple-icon.2_gkidu4toya9.png","sizes":"512x512","type":"image/png"}],["$","$L14","13",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@15","v":null,"s":"$9"}},"a":"$@16","u":"$@17","b":"bnMYC7Ky95L7cIfyIbyGr"}
+e:null
+17:true
+9:300
+9:C
+16:0
+7:"$undefined"
+15:"$undefined"
+f:"$undefined"

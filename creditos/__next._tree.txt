@@ -1,0 +1,6 @@
+:HL["/IN-Dental-Care/_next/static/chunks/2xj9yyul01yao.css","style"]
+:HL["/IN-Dental-Care/_next/static/media/82450a180bcad83c-s.p.0p-wng2nn8o-p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/IN-Dental-Care/_next/static/media/c0680f1bdb3a2e90-s.p.1gsd1jahc5dg_.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"creditos","h":64,"c":"$Q2"}]]
+0:{"b":"bnMYC7Ky95L7cIfyIbyGr","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
