@@ -14,11 +14,6 @@ export const hero = {
   title: { before: "Una sonrisa sana, en manos de ", highlight: "20 años", after: " de experiencia" },
   intro:
     "Atención personalizada del Dr. Ignacio Núñez, de principio a fin. Sin apuros, con diagnósticos claros y tratamientos pensados para durar.",
-  stats: [
-    { value: "20", label: "años de experiencia" },
-    { value: "+9.000", label: "pacientes atendidos" },
-    { value: "1", label: "tratante en todo tu proceso" },
-  ],
 };
 
 export const doctor = {

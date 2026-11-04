@@ -18,7 +18,7 @@ export interface PhotoBox {
  * Con `cutout` (misma foto, solo la cabeza con fondo transparente) la cabeza se pinta encima sin
  * recortar y sobresale por arriba del diente: efecto «pop-out».
  */
-export function ToothFrame({ image, cutout, box, alt, sizes, className = "" }: { image: StaticImageData; cutout?: StaticImageData; box: PhotoBox; alt: string; sizes: string; className?: string }) {
+export function ToothFrame({ image, cutout, box, alt, sizes, priority = false, className = "" }: { image: StaticImageData; cutout?: StaticImageData; box: PhotoBox; alt: string; sizes: string; priority?: boolean; className?: string }) {
   const clipId = useId().replace(/:/g, "");
   const boxStyle = { left: `${box.left}%`, top: `${box.top}%`, width: `${box.width}%`, height: `${box.height}%` };
   return (
@@ -32,7 +32,7 @@ export function ToothFrame({ image, cutout, box, alt, sizes, className = "" }: {
       </svg>
       <div className="absolute inset-0 bg-sage" style={{ clipPath: `url(#${clipId})` }}>
         <div className="absolute" style={boxStyle}>
-          <Image src={image} alt={alt} fill sizes={sizes} placeholder="blur" className="object-cover" />
+          <Image src={image} alt={alt} fill sizes={sizes} priority={priority} placeholder="blur" className="object-cover" />
         </div>
       </div>
       <svg viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full overflow-visible">
@@ -41,7 +41,7 @@ export function ToothFrame({ image, cutout, box, alt, sizes, className = "" }: {
       </svg>
       {cutout && (
         <div aria-hidden className="pointer-events-none absolute" style={boxStyle}>
-          <Image src={cutout} alt="" fill sizes={sizes} className="object-cover" />
+          <Image src={cutout} alt="" fill sizes={sizes} priority={priority} className="object-cover" />
         </div>
       )}
     </div>

@@ -16,7 +16,7 @@ export function FloatingContact() {
   const [overTarget, setOverTarget] = useState(false);
 
   useEffect(() => {
-    const hero = document.getElementById("inicio");
+    const hero = document.getElementById("doctor"); // primera sección de la portada
     const targets = ["agenda", "pie"].map((id) => document.getElementById(id)).filter((el): el is HTMLElement => !!el);
     const visible = new Set<Element>();
     const heroObserver = new IntersectionObserver(([entry]) => setPastHero(!entry.isIntersecting), { threshold: 0.15 });

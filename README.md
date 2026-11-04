@@ -19,7 +19,7 @@
 - Fotografía: portada y retrato del doctor entregadas por el cliente; el resto de Unsplash, marcadas como «Imagen ilustrativa». Opiniones sin caras (solo iniciales).
 
 ## Secciones
-Portada · El doctor · Tratamientos (6) · Banda de imagen fija · Primera consulta (4 pasos) · Opiniones · Previsión y pagos · Preguntas frecuentes · Agenda (formulario demo) · Ubicación y contacto · Pie · WhatsApp flotante y barra móvil «Agendar hora» · Páginas `/privacidad` y `/creditos`.
+Intro animada · El doctor (primera sección, h1) · Presentación de la consulta · Tratamientos (6, desplegables) · Banda de imagen fija · Primera consulta (5 pasos) · Opiniones (carrusel) · Previsión y pagos (desplegables) · Preguntas frecuentes · Agenda (formulario demo) · Ubicación y contacto · Pie · WhatsApp flotante y barra móvil «Agendar hora» · Páginas `/privacidad` y `/creditos`.
 
 ## Desarrollo
 ```bash
@@ -48,3 +48,4 @@ npm run deploy:pages     # publica la vista previa en GitHub Pages
 | 2026-11-01 | Salida de la intro más suave (1,6 s); cabeza del doctor sobresale del marco de diente (recorte propio) |
 | 2026-11-01 | Opiniones: vuelta al diseño anterior (se descarta la encía) + carrusel automático con zoom de la opinión activa |
 | 2026-11-01 | Opiniones: transición continua (tamaño y opacidad según la distancia al centro), laterales desvanecidos; móvil sin controles, se desliza con el dedo |
+| 2026-11-03 | El doctor pasa a ser la primera sección; presentación de la consulta debajo y sin cifras; foto del doctor más pequeña en móvil; Previsión y pagos desplegable |
